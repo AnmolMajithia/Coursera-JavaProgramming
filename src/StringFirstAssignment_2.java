@@ -9,7 +9,7 @@ public class StringFirstAssignment_2 {
         if(start == -1) {
             return "";
         }
-        int end = dna.indexOf(stopCodon, start+1);
+        int end = dna.indexOf(stopCodon, start+startCodon.length());
         if(end == -1) {
             return "";
         }
