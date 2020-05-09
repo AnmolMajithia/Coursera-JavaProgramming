@@ -1,23 +1,23 @@
 public class StringFirstAssignment_2 {
-    private String findSimpleGene(String dna, int startCodon, int stopCodon) {
+    private String findSimpleGene(String dna, String startCodon, String stopCodon) {
         boolean lower = false;
         if(Character.isLowerCase(dna.charAt(0))) {
             lower = true;
         }
         dna = dna.toUpperCase();
-        startCodon = dna.indexOf("ATG", startCodon);
-        if(startCodon == -1) {
+        int start = dna.indexOf(startCodon);
+        if(start == -1) {
             return "";
         }
-        stopCodon = dna.indexOf("TAA",stopCodon);
-        if(stopCodon == -1) {
+        int end = dna.indexOf(stopCodon, start+1);
+        if(end == -1) {
             return "";
         }
-        if((stopCodon - startCodon) % 3 == 0) {
+        if((end - start) % 3 == 0) {
             if(lower) {
                 dna = dna.toLowerCase();
             }
-            return dna.substring(startCodon, stopCodon+3);
+            return dna.substring(start, end+stopCodon.length());
         } else {
             return "";
         }
@@ -25,15 +25,15 @@ public class StringFirstAssignment_2 {
 
     private void testSimpleGene() {
         String dna = "AGCTATCGATAACG";
-        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,0,0));
+        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,"ATG","TAA"));
         dna = "ATGAACGAAC";
-        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,0,0));
+        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,"ATG","TAA"));
         dna = "ACACGCATCGAC";
-        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,0,0));
+        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,"ATG","TAA"));
         dna = "atgagctaa";
-        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,0,10));
+        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,"ATG","TAA"));
         dna = "ATGACTAA";
-        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,0,0));
+        System.out.println("DNA : " + dna + "\nGene : " + findSimpleGene(dna,"ATG","TAA"));
     }
 
     public static void main(String[] args) {
