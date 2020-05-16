@@ -43,9 +43,9 @@ public class CountryExportsCSV {
         CSVParser parser = fr.getCSVParser();
         System.out.println(countryInfo(parser, "Nauru"));
         parser = fr.getCSVParser();
-        listExportersTwoProducts(parser, "fish", "nuts");
+        listExportersTwoProducts(parser, "cotton", "flowers");
         parser = fr.getCSVParser();
-        System.out.println(numberOfExporters(parser, "sugar"));
+        System.out.println(numberOfExporters(parser, "cocoa"));
         parser = fr.getCSVParser();
         bigExporters(parser, "$999,999,999,999");
     }
