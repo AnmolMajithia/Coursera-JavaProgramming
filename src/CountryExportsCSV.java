@@ -30,14 +30,24 @@ public class CountryExportsCSV {
         return c;
     }
 
+    private void bigExporters(CSVParser parser, String amount) {
+        for(CSVRecord rec : parser) {
+            if(rec.get("Value (dollars)").length() > amount.length()) {
+                System.out.println(rec.get("Country") + " " + rec.get("Value (dollars)"));
+            }
+        }
+    }
+
     private void tester() {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
-        System.out.println(countryInfo(parser, "United States"));
+        System.out.println(countryInfo(parser, "Nauru"));
         parser = fr.getCSVParser();
-        listExportersTwoProducts(parser, "gold", "diamonds");
+        listExportersTwoProducts(parser, "fish", "nuts");
         parser = fr.getCSVParser();
-        System.out.println(numberOfExporters(parser, "gold"));
+        System.out.println(numberOfExporters(parser, "sugar"));
+        parser = fr.getCSVParser();
+        bigExporters(parser, "$999,999,999,999");
     }
 
     public static void main(String[] args) {
